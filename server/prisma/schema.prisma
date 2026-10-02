@@ -29,6 +29,8 @@ model User {
   versions        VersionSnapshot[]
 
   @@index([username])
+
+  @@map("codefolio_users")
 }
 
 model Profile {
@@ -56,6 +58,8 @@ model Profile {
 
   @@index([userId])
   @@index([username])
+
+  @@map("codefolio_profiles")
 }
 
 enum ThemeMode {
@@ -79,6 +83,8 @@ model Template {
   createdAt    DateTime  @default(now())
 
   profiles Profile[]
+
+  @@map("codefolio_templates")
 }
 
 model Project {
@@ -102,6 +108,8 @@ model Project {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_projects")
 }
 
 model Skill {
@@ -117,6 +125,8 @@ model Skill {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_skills")
 }
 
 model SocialLink {
@@ -131,6 +141,8 @@ model SocialLink {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_social_links")
 }
 
 model PortfolioView {
@@ -145,6 +157,8 @@ model PortfolioView {
 
   @@index([userId])
   @@index([viewedAt])
+
+  @@map("codefolio_portfolio_views")
 }
 
 model ContactMessage {
@@ -160,6 +174,8 @@ model ContactMessage {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_contact_messages")
 }
 
 enum MessageStatus {
@@ -179,6 +195,8 @@ model CustomDomain {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_custom_domains")
 }
 
 enum VerificationStatus {
@@ -196,6 +214,8 @@ model Subscription {
   expiresAt DateTime?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("codefolio_subscriptions")
 }
 
 enum Plan {
@@ -222,4 +242,6 @@ model VersionSnapshot {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+
+  @@map("codefolio_version_snapshots")
 }

@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `User` (
+CREATE TABLE `codefolio_users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
@@ -10,14 +10,14 @@ CREATE TABLE `User` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `User_email_key`(`email`),
-    UNIQUE INDEX `User_username_key`(`username`),
-    INDEX `User_username_idx`(`username`),
+    UNIQUE INDEX `codefolio_users_email_key`(`email`),
+    UNIQUE INDEX `codefolio_users_username_key`(`username`),
+    INDEX `codefolio_users_username_idx`(`username`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Profile` (
+CREATE TABLE `codefolio_profiles` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `username` VARCHAR(100) NOT NULL,
@@ -37,15 +37,15 @@ CREATE TABLE `Profile` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Profile_userId_key`(`userId`),
-    UNIQUE INDEX `Profile_username_key`(`username`),
-    INDEX `Profile_userId_idx`(`userId`),
-    INDEX `Profile_username_idx`(`username`),
+    UNIQUE INDEX `codefolio_profiles_userId_key`(`userId`),
+    UNIQUE INDEX `codefolio_profiles_username_key`(`username`),
+    INDEX `codefolio_profiles_userId_idx`(`userId`),
+    INDEX `codefolio_profiles_username_idx`(`username`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Template` (
+CREATE TABLE `codefolio_templates` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `slug` VARCHAR(191) NOT NULL,
@@ -54,12 +54,12 @@ CREATE TABLE `Template` (
     `isPremium` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `Template_slug_key`(`slug`),
+    UNIQUE INDEX `codefolio_templates_slug_key`(`slug`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Project` (
+CREATE TABLE `codefolio_projects` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `title` VARCHAR(200) NOT NULL,
@@ -77,13 +77,13 @@ CREATE TABLE `Project` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    UNIQUE INDEX `Project_slug_key`(`slug`),
-    INDEX `Project_userId_idx`(`userId`),
+    UNIQUE INDEX `codefolio_projects_slug_key`(`slug`),
+    INDEX `codefolio_projects_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Skill` (
+CREATE TABLE `codefolio_skills` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `name` VARCHAR(100) NOT NULL,
@@ -93,12 +93,12 @@ CREATE TABLE `Skill` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    INDEX `Skill_userId_idx`(`userId`),
+    INDEX `codefolio_skills_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `SocialLink` (
+CREATE TABLE `codefolio_social_links` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `platform` VARCHAR(100) NOT NULL,
@@ -107,12 +107,12 @@ CREATE TABLE `SocialLink` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
-    INDEX `SocialLink_userId_idx`(`userId`),
+    INDEX `codefolio_social_links_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `PortfolioView` (
+CREATE TABLE `codefolio_portfolio_views` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `ipHash` VARCHAR(64) NOT NULL,
@@ -120,13 +120,13 @@ CREATE TABLE `PortfolioView` (
     `referrer` VARCHAR(500) NULL,
     `viewedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `PortfolioView_userId_idx`(`userId`),
-    INDEX `PortfolioView_viewedAt_idx`(`viewedAt`),
+    INDEX `codefolio_portfolio_views_userId_idx`(`userId`),
+    INDEX `codefolio_portfolio_views_viewedAt_idx`(`viewedAt`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `ContactMessage` (
+CREATE TABLE `codefolio_contact_messages` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `senderName` VARCHAR(150) NOT NULL,
@@ -136,12 +136,12 @@ CREATE TABLE `ContactMessage` (
     `status` ENUM('UNREAD', 'READ', 'ARCHIVED') NOT NULL DEFAULT 'UNREAD',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `ContactMessage_userId_idx`(`userId`),
+    INDEX `codefolio_contact_messages_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `CustomDomain` (
+CREATE TABLE `codefolio_custom_domains` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `domain` VARCHAR(255) NOT NULL,
@@ -149,13 +149,13 @@ CREATE TABLE `CustomDomain` (
     `cnameTarget` VARCHAR(255) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `CustomDomain_domain_key`(`domain`),
-    INDEX `CustomDomain_userId_idx`(`userId`),
+    UNIQUE INDEX `codefolio_custom_domains_domain_key`(`domain`),
+    INDEX `codefolio_custom_domains_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Subscription` (
+CREATE TABLE `codefolio_subscriptions` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `plan` ENUM('FREE', 'PRO') NOT NULL DEFAULT 'FREE',
@@ -163,12 +163,12 @@ CREATE TABLE `Subscription` (
     `startedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `expiresAt` DATETIME(3) NULL,
 
-    UNIQUE INDEX `Subscription_userId_key`(`userId`),
+    UNIQUE INDEX `codefolio_subscriptions_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `VersionSnapshot` (
+CREATE TABLE `codefolio_version_snapshots` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `versionName` VARCHAR(100) NOT NULL DEFAULT 'Snapshot',
@@ -178,36 +178,36 @@ CREATE TABLE `VersionSnapshot` (
     `socialLinksData` JSON NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    INDEX `VersionSnapshot_userId_idx`(`userId`),
+    INDEX `codefolio_version_snapshots_userId_idx`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Profile` ADD CONSTRAINT `Profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_profiles` ADD CONSTRAINT `codefolio_profiles_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Profile` ADD CONSTRAINT `Profile_templateId_fkey` FOREIGN KEY (`templateId`) REFERENCES `Template`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `codefolio_profiles` ADD CONSTRAINT `codefolio_profiles_templateId_fkey` FOREIGN KEY (`templateId`) REFERENCES `codefolio_templates`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Project` ADD CONSTRAINT `Project_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_projects` ADD CONSTRAINT `codefolio_projects_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Skill` ADD CONSTRAINT `Skill_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_skills` ADD CONSTRAINT `codefolio_skills_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `SocialLink` ADD CONSTRAINT `SocialLink_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_social_links` ADD CONSTRAINT `codefolio_social_links_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `PortfolioView` ADD CONSTRAINT `PortfolioView_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_portfolio_views` ADD CONSTRAINT `codefolio_portfolio_views_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `ContactMessage` ADD CONSTRAINT `ContactMessage_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_contact_messages` ADD CONSTRAINT `codefolio_contact_messages_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `CustomDomain` ADD CONSTRAINT `CustomDomain_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_custom_domains` ADD CONSTRAINT `codefolio_custom_domains_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Subscription` ADD CONSTRAINT `Subscription_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_subscriptions` ADD CONSTRAINT `codefolio_subscriptions_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `VersionSnapshot` ADD CONSTRAINT `VersionSnapshot_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `codefolio_version_snapshots` ADD CONSTRAINT `codefolio_version_snapshots_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `codefolio_users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
